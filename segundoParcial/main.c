@@ -31,7 +31,7 @@ int main()
                 system("pause");
                 exit(EXIT_FAILURE);
             }
-            system("pause > n");
+            system("pause");
             system("cls");
             break;
         case 2:
