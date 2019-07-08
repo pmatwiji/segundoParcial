@@ -34,16 +34,46 @@ int controller_loadEmpleados(char* path, LinkedList* pArrayListEmpleados)
 void controller_listOne(LinkedList* pArrayListEmployee, int index)
 {
     eEmpleado* auxEmpleado;
+    int auxId;
+    char auxNombre[50];
+    char auxEmpleo[50];
+    int auxEdad;
+    int auxHoras;
+
     auxEmpleado = ll_get(pArrayListEmployee, index);
-    printf("| %-4d | %-11s | %-15s | %-4d | %-19d |\n", auxEmpleado->id, auxEmpleado->nombre, auxEmpleado->empleo, auxEmpleado->edad, auxEmpleado->horasTrabajadas);
+
+    employee_getId(auxEmpleado, &auxId);
+    employee_getNombre(auxEmpleado,auxNombre);
+    employee_getEmpleo(auxEmpleado,auxEmpleo);
+    employee_getEdad(auxEmpleado,&auxEdad);
+    employee_getHorasTrabajadas(auxEmpleado,&auxHoras);
+
+
+    printf("| %-4d | %-11s | %-15s | %-4d | %-19d |\n", auxId, auxNombre, auxEmpleo, auxEdad, auxHoras);
 
 }
 
 void controller_listOneConSueldo(LinkedList* pArrayListEmployee, int index)
 {
     eEmpleado* auxEmpleado;
+    int auxId;
+    char auxNombre[50];
+    char auxEmpleo[50];
+    int auxEdad;
+    int auxHoras;
+    int auxSueldo;
+
     auxEmpleado = ll_get(pArrayListEmployee, index);
-    printf("| %-4d | %-11s | %-15s | %-4d | %-19d | %-10d |\n", auxEmpleado->id, auxEmpleado->nombre, auxEmpleado->empleo, auxEmpleado->edad, auxEmpleado->horasTrabajadas, auxEmpleado->sueldo);
+
+    employee_getId(auxEmpleado, &auxId);
+    employee_getNombre(auxEmpleado,auxNombre);
+    employee_getEmpleo(auxEmpleado,auxEmpleo);
+    employee_getEdad(auxEmpleado,&auxEdad);
+    employee_getHorasTrabajadas(auxEmpleado,&auxHoras);
+    employee_getSueldo(auxEmpleado,&auxSueldo);
+
+
+    printf("| %-4d | %-11s | %-15s | %-4d | %-19d | %-10d |\n", auxId, auxNombre, auxEmpleo, auxEdad, auxHoras, auxSueldo);
 
 }
 
@@ -89,10 +119,10 @@ int controller_ListEmployeeConSueldo(LinkedList* pArrayListEmployee)
 
     for(i=0; i<ll_len(pArrayListEmployee); i++)
     {
-        controller_listOne(pArrayListEmployee,i);
+        controller_listOneConSueldo(pArrayListEmployee,i);
         retorno = TRUE;
     }
-    printf("=====================================================================\n");
+    printf("==================================================================================\n");
     return retorno;
 }
 /** \brief Ordenar empleados
@@ -137,30 +167,46 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 }
 
 
-//int controller_guardarSueldos(char* path, LinkedList* this)
-//{
-//    FILE* pFileText;
-//    eEmpleado* employee;
-//    int retorno = FALSE;
-//    int i;
-//    pFileText = fopen(path, "w");
-//    if(pFileText != NULL && this != NULL)
-//    {
-//        fprintf(pFileText, "id,nombre,horasTrabajadas,sueldo\n");
-//        for(i=0; i < ll_len(this); i++)
-//        {
-//            employee = ll_get(this,i);
-//            if(employee!=NULL)
-//            {
-//                fprintf(pFileText, "%d,%s,%d,%d\n", employee->id, employee->nombre, employee->horasTrabajadas, employee->sueldo);
-//            }
-//
-//        }
-//        retorno = TRUE;
-//    }
-//    fclose(pFileText);
-//    return retorno;
-//}
+int controller_guardarTexto(char* path, LinkedList* this)
+{
+    FILE* pFileText;
+    eEmpleado* employee;
+
+    int auxId;
+    char auxNombre[50];
+    char auxEmpleo[50];
+    int auxEdad;
+    int auxHoras;
+    int auxSueldo;
+
+    int retorno = FALSE;
+    int i;
+
+
+    pFileText = fopen(path, "w");
+    if(pFileText != NULL && this != NULL)
+    {
+        fprintf(pFileText, "id,nombre,empleo,edad,horasTrabajadas,sueldo\n");
+        for(i=0; i < ll_len(this); i++)
+        {
+            employee = ll_get(this,i);
+            if(employee!=NULL)
+            {
+                employee_getId(employee, &auxId);
+                employee_getNombre(employee,auxNombre);
+                employee_getEmpleo(employee,auxEmpleo);
+                employee_getEdad(employee,&auxEdad);
+                employee_getHorasTrabajadas(employee,&auxHoras);
+                employee_getSueldo(employee,&auxSueldo);
+                fprintf(pFileText, "%d,%s,%s,%d,%d,%d\n", auxId, auxNombre,auxEmpleo,auxEdad, auxHoras, auxSueldo);
+            }
+
+        }
+        retorno = TRUE;
+    }
+    fclose(pFileText);
+    return retorno;
+}
 
 
 

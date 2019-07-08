@@ -15,25 +15,25 @@ eEmpleado* employee_newParametros(char* idStr, char* nombreStr, char* empleoStr,
 void employee_delete(eEmpleado* this);
 
 int employee_setId(eEmpleado* this,int id);
-int employee_getId(eEmpleado* this,int id);
+int employee_getId(eEmpleado* this,int* id);
 
 int employee_setNombre(eEmpleado* this,char* nombre);
-char* employee_getNombre(eEmpleado* this,char* nombre);
+int employee_getNombre(eEmpleado* this,char* nombre);
 
 int employee_setHorasTrabajadas(eEmpleado* this,int horasTrabajadas);
-int employee_getHorasTrabajadas(eEmpleado* this,int horasTrabajadas);
+int employee_getHorasTrabajadas(eEmpleado* this,int* horasTrabajadas);
 
 int employee_setEmpleo(eEmpleado* this,char* empleo);
-char* employee_getEmpleo(eEmpleado* this,char* empleo);
+int employee_getEmpleo(eEmpleado* this,char* empleo);
 
 int employee_setEdad(eEmpleado* this, int edad);
-int employee_getEdad(eEmpleado* this,int edad);
+int employee_getEdad(eEmpleado* this,int* edad);
 
 int employee_setSueldo(eEmpleado* this,int sueldo);
-int employee_getSueldo(eEmpleado* this,int sueldo);
+int employee_getSueldo(eEmpleado* this,int* sueldo);
 
 void employee_calcularSueldo(void* auxemployee);
-int employee_empleadosPlatudos (void* auxemployee);
+int employee_empleadosProgramadores (void* auxEmployee);
 int employee_empleadosExplotados (void* auxemployee);
 int employee_empleadosConIdBajo (void* auxemployee);
 

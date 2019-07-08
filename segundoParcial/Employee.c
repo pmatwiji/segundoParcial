@@ -96,83 +96,95 @@ int employee_setEdad(eEmpleado* this, int edad)
     return retorno;
 }
 
-int employee_getId(eEmpleado* this,int id)
+int employee_setSueldo(eEmpleado* this,int sueldo)
+{
+    int retorno = FALSE;
+
+    if(this!=NULL && sueldo>0)
+    {
+        this->sueldo=sueldo;
+        retorno = TRUE;
+    }
+
+    return retorno;
+}
+
+int employee_getId(eEmpleado* this,int* id)
 {
     int retorno = FALSE;
 
     if(this!=NULL && id>0)
     {
-        id = this->id;
-        retorno = id;
+        *id = this->id;
+        retorno = TRUE;
     }
 
     return retorno;
 }
 
 
-char* employee_getNombre(eEmpleado* this,char* nombre)
+int employee_getNombre(eEmpleado* this,char* nombre)
 {
-    char* retorno = NULL;
+    int retorno = FALSE;
 
     if(this!=NULL)
     {
         strcpy(nombre,this->nombre);
-        //retorno = TRUE;
-        strcpy(retorno,nombre);
+        retorno = TRUE;
     }
 
     return retorno;
 }
 
-int employee_getHorasTrabajadas(eEmpleado* this,int horasTrabajadas)
+int employee_getHorasTrabajadas(eEmpleado* this,int* horasTrabajadas)
 {
     int retorno = FALSE;
 
     if(this!=NULL && horasTrabajadas>0)
     {
-        horasTrabajadas = this->horasTrabajadas;
-        retorno = horasTrabajadas;
+        *horasTrabajadas = this->horasTrabajadas;
+        retorno = TRUE;
     }
 
     return retorno;
 }
 
-int employee_getEdad(eEmpleado* this,int edad)
+int employee_getEdad(eEmpleado* this,int* edad)
 {
     int retorno = FALSE;
 
     if(this!=NULL && edad>0)
     {
-        edad = this->edad;
-        retorno = edad;
+        *edad = this->edad;
+        retorno = TRUE;
     }
 
     return retorno;
 }
 
-char* employee_getEmpleo(eEmpleado* this,char* empleo)
+int employee_getEmpleo(eEmpleado* this,char* empleo)
 {
-    char* retorno = NULL;
+    int retorno = FALSE;
     if(this!=NULL)
     {
         strcpy(empleo,this->empleo);
-        strcpy(retorno,empleo);
+        retorno = TRUE;
     }
 
     return retorno;
 }
 
-//int employee_getSueldo(eEmpleado* this,int sueldo)
-//{
-//    int retorno;
-//    if(this!=NULL && sueldo>0)
-//    {
-//        sueldo = this->sueldo;
-//        retorno = sueldo;
-//    }
-//
-//    return retorno;
-//}
+int employee_getSueldo(eEmpleado* this,int* sueldo)
+{
+    int retorno;
+    if(this!=NULL && sueldo>0)
+    {
+        *sueldo = this->sueldo;
+        retorno = TRUE;
+    }
+
+    return retorno;
+}
 
 void employee_calcularSueldo(void* auxEmployee)
 {
@@ -182,13 +194,36 @@ void employee_calcularSueldo(void* auxEmployee)
     if(auxEmployee!=NULL)
     {
         employee = (eEmpleado*)auxEmployee;
-        auxHoras = employee->horasTrabajadas;
+        employee_getHorasTrabajadas(employee,&auxHoras);
 
         if(auxHoras>=0)
         {
-            employee->sueldo = (auxHoras*300);
+            employee_setSueldo(employee,auxHoras*300);
+        }
+
+    }
+}
+
+int employee_empleadosProgramadores (void* auxEmployee)
+{
+    eEmpleado* employee;
+    int auxEdad;
+    char auxEmpleo[50];
+    int retorno = FALSE;
+
+    if(auxEmployee!=NULL)
+    {
+        employee = (eEmpleado*)auxEmployee;
+        employee_getEmpleo(employee,auxEmpleo);
+        employee_getEdad(employee,&auxEdad);
+
+
+        if(auxEdad>=20 && strcmp(auxEmpleo,"programador")==0)
+        {
+            retorno= TRUE;
         }
     }
+    return retorno;
 }
 //
 //int employee_empleadosPlatudos (void* auxEmployee)
@@ -256,7 +291,8 @@ void employee_calcularSueldo(void* auxEmployee)
 //    return retorno;
 //}
 //
-int sortEmployeeByName(void* auxEmployeeUno, void* auxEmployeeDos){
+int sortEmployeeByName(void* auxEmployeeUno, void* auxEmployeeDos)
+{
     int retorno = FALSE;
     if(strcmp(((eEmpleado*)auxEmployeeUno)->nombre, ((eEmpleado*)auxEmployeeDos)->nombre) > 0)
     {

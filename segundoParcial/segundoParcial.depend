@@ -73,3 +73,77 @@
 	"Employee.h"
 	"menu.h"
 
+1562617684 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1561388573 c:\users\peps\desktop\segundoparcial-master\segundoparcial\linkedlist.h
+
+1562617853 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"menu.h"
+	"validaciones.h"
+
+1562616134 c:\users\peps\desktop\segundoparcial-master\segundoparcial\controller.h
+
+1562616260 c:\users\peps\desktop\segundoparcial-master\segundoparcial\employee.h
+
+1561388573 c:\users\peps\desktop\segundoparcial-master\segundoparcial\menu.h
+
+1561388573 c:\users\peps\desktop\segundoparcial-master\segundoparcial\validaciones.h
+
+1562613485 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"menu.h"
+	"validaciones.h"
+
+1561388573 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\parser.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"menu.h"
+
+1561388573 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"validaciones.h"
+
+1562617228 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"menu.h"
+
+1562616414 source:c:\users\peps\desktop\segundoparcial-master\segundoparcial\controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"parser.h"
+	"menu.h"
+	"validaciones.h"
+
+1561388573 c:\users\peps\desktop\segundoparcial-master\segundoparcial\parser.h
+

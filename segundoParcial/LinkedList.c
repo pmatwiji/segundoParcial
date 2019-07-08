@@ -624,17 +624,14 @@ int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
 
 LinkedList* ll_filter(LinkedList* this,int (*pFunc)(void*))
 {
-    LinkedList* cloneArray=NULL;
+    LinkedList* cloneArray = ll_newLinkedList();
     int i;
-    int len;
     void* elemento;
-    len=ll_len(this);
-    cloneArray=ll_newLinkedList();
-    if(this!=NULL && pFunc!=NULL && len>0 && cloneArray!=NULL)
+    if(this!=NULL && pFunc!=NULL && ll_len(this)>0 && cloneArray!=NULL)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<ll_len(this);i++)
         {
-            elemento=ll_get(this,i);
+            elemento = ll_get(this,i);
             if(elemento!=NULL)
             {
                 if(pFunc(elemento))
@@ -651,12 +648,11 @@ int ll_map(LinkedList* this, void (*pFunc)(void*))
 {
     int retorno=0;
     int i;
-    int len;
     void* elemento;
-    len=ll_len(this);
-    if(this!=NULL && pFunc!=NULL && len>0)
+
+    if(this!=NULL && pFunc!=NULL && ll_len(this)>0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<ll_len(this);i++)
         {
             elemento=ll_get(this,i);
             pFunc(elemento);

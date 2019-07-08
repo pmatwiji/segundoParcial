@@ -11,6 +11,7 @@ int main()
     int test;
 
     LinkedList* listaEmpleados = ll_newLinkedList();
+    LinkedList* listaEmpleadosFiltrada = ll_newLinkedList();
 
     do
     {
@@ -22,21 +23,21 @@ int main()
             test = controller_loadEmpleados("datos.csv",listaEmpleados);
             if(test==TRUE)
             {
-                printf("Empleados cargados con exito.\n");
+                printf("\nEmpleados cargados con exito.\n\n");
             }
             else
             {
-                printf("Error, no se pudo cargar los datos.\n");
+                printf("\nError, no se pudo cargar los datos.\n\n");
                 system("pause");
                 exit(EXIT_FAILURE);
             }
-            system("pause");
+            system("pause > n");
             system("cls");
             break;
         case 2:
             if(ll_isEmpty(listaEmpleados) == 1)
             {
-                printf("No hay datos cargados.\n");
+                printf("\nNo hay datos cargados.\n\n");
             }
             else
             {
@@ -50,11 +51,12 @@ int main()
         case 3:
             if(ll_isEmpty(listaEmpleados) == 1)
             {
-                printf("No hay datos cargados.\n");
+                printf("\nNo hay datos cargados.\n\n");
             }
             else
             {
                 ll_map(listaEmpleados,employee_calcularSueldo);
+                printf("\nSueldos calculados con exito.\n\n");
             }
 
             system("pause");
@@ -63,7 +65,7 @@ int main()
         case 4:
             if(ll_isEmpty(listaEmpleados) == 1)
             {
-                printf("No hay datos cargados.\n");
+                printf("\nNo hay datos cargados.\n\n");
             }
             else
             {
@@ -74,7 +76,35 @@ int main()
             system("cls");
             break;
         case 5:
-            printf("Gracias por utilizar el sistema.\n");
+            if(ll_isEmpty(listaEmpleados) == 1)
+            {
+                printf("\nNo hay datos cargados.\n\n");
+            }
+            else
+            {
+                listaEmpleadosFiltrada = ll_filter(listaEmpleados,employee_empleadosProgramadores);
+                printf("\nLista filtrada con exito.\n\n");
+            }
+
+            system("pause");
+            system("cls");
+            break;
+        case 6:
+            if(ll_isEmpty(listaEmpleadosFiltrada) == 1 || ll_isEmpty(listaEmpleados) == 1)
+            {
+                printf("\nNo hay datos cargados.\n\n");
+            }
+            else
+            {
+                controller_guardarTexto("resultados.csv",listaEmpleadosFiltrada);
+                printf("\nLista nueva impresa con exito.\n\n");
+            }
+
+            system("pause");
+            system("cls");
+            break;
+        case 7:
+            printf("\nGracias por utilizar el sistema.\n\n");
             system("pause");
             system("cls");
             break;
@@ -94,6 +124,6 @@ int main()
 //            break;
         }
     }
-    while(option != 3);
+    while(option != 7);
     return 0;
 }
